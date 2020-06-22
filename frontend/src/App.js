@@ -23,6 +23,7 @@ function App() {
 
     const project = response.data;
     setProjects([...projects, project]);
+    console.log(projects);
   }
 
   return (
