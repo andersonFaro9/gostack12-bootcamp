@@ -9,7 +9,7 @@ const { uuid, isUuid } = require("uuidv4");
 //Jamais usar em produção
 //array guardar em memória porque não se está usando um banco de dados aqui
 
-const projects = [];
+const repositories = [];
 
 function logRequests(request, response, next) {
   const { method, url } = request;
@@ -31,57 +31,57 @@ validateProject = (request, response, next) => {
   return next();
 };
 
-app.get("/projects", (request, response) => {
+app.get("/repositories", (request, response) => {
   const { title } = request.query;
 
   const results = title
-    ? projects.filter((project) => project.title.includes(title))
-    : projects;
+    ? repositories.filter((repository) => repository.title.includes(title))
+    : repositories;
 
   return response.json(results);
 });
 
-app.post("/projects", (request, response) => {
+app.post("/repositories", (request, response) => {
   const { title, owner } = request.body;
 
   const project = { id: uuid(), title, owner };
 
-  projects.push(project);
+  repositories.push(project);
 
   return response.json(project);
 });
 
-app.put("/projects/:id", validateProject, (request, response) => {
+app.put("/repositories/:id", validateProject, (request, response) => {
   const { id } = request.params;
 
   const { title, owner } = request.body;
 
-  const projectIndex = projects.findIndex((project) => project.id === id);
+  const projectIndex = repositories.findIndex((project) => project.id === id);
 
   if (projectIndex < 0) {
     return response.status(400).json({ error: "Project not found" });
   }
 
-  const project = {
+  const repository = {
     id,
     title,
     owner,
   };
 
-  projects[projectIndex] = project;
-  return response.json(projects);
+  repositories[projectIndex] = repository;
+  return response.json(repositories);
 });
 
-app.delete("/projects/:id", validateProject, (request, response) => {
+app.delete("/repositories/:id", validateProject, (request, response) => {
   const { id } = request.params;
 
-  const projectIndex = projects.findIndex((project) => project.id === id);
+  const projectIndex = repositories.findIndex((project) => project.id === id);
 
   if (projectIndex < 0) {
     return response.status(400).json({ error: "Project not found" });
   }
 
-  projects.splice(projectIndex, 1);
+  repositories.splice(projectIndex, 1);
 
   return response.status(204).send();
 });
