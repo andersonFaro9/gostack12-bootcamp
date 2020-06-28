@@ -4,7 +4,7 @@
 
 🚀 O aprendizado é contínuo, não desista.
 
-![bootcamp](https://user-images.githubusercontent.com/3237047/85075213-31fa8800-b194-11ea-8b4e-12e8df42ded5.jpg)
+![Wallpaper Bootcamp - 2560x1080 copy](https://user-images.githubusercontent.com/3237047/85951609-9064fa80-b93a-11ea-8838-3cb34355e30a.png)
 
 </h4>
 
